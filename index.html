@@ -1,297 +1,387 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>[BOT] Gekko</title>
+<title>[BOT] Gekko</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-            color: white;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #1e1f22;
+    color: #f2f3f5;
+    min-height: 100vh;
+}
 
-            background:
-                radial-gradient(circle at 15% 20%, #7c3aed 0%, transparent 28%),
-                radial-gradient(circle at 85% 80%, #4c1d95 0%, transparent 30%),
-                linear-gradient(135deg, #12051f, #211044 45%, #130827);
-        }
+/* Barra lateral */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 245px;
+    height: 100vh;
+    background: #17181c;
+    border-right: 1px solid #111214;
+    padding: 20px 12px;
+}
 
-        .background {
-            min-height: 100vh;
-            padding: 70px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.server-name {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px;
+    border-bottom: 1px solid #303238;
+    margin-bottom: 20px;
+}
 
-        .container {
-            width: 100%;
-            max-width: 900px;
+.category {
+    color: #949ba4;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+    letter-spacing: .5px;
+}
 
-            background: rgba(20, 13, 38, 0.82);
-            border: 1px solid rgba(168, 85, 247, 0.35);
-            border-radius: 28px;
+.channel {
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: #b5bac1;
+    margin-bottom: 3px;
+    font-size: 15px;
+}
 
-            padding: 55px;
+.channel.active {
+    background: #3d275e;
+    color: #ffffff;
+}
 
-            box-shadow:
-                0 0 80px rgba(124, 58, 237, 0.25),
-                inset 0 0 40px rgba(168, 85, 247, 0.04);
+.channel:hover {
+    background: #302d35;
+}
 
-            backdrop-filter: blur(18px);
-        }
+/* Conteúdo */
+.main {
+    margin-left: 245px;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(139,92,246,.13), transparent 35%),
+        #1e1f22;
+}
 
-        .logo {
-            width: 90px;
-            height: 90px;
+/* Cabeçalho */
+.header {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid #303238;
+    background: #1e1f22;
+}
 
-            margin: 0 auto 20px;
+.header span {
+    font-size: 20px;
+    margin-right: 10px;
+}
 
-            border-radius: 50%;
+.header strong {
+    font-size: 16px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+/* Página */
+.content {
+    max-width: 900px;
+    margin: auto;
+    padding: 70px 35px;
+}
 
-            font-size: 48px;
+.welcome {
+    text-align: center;
+    margin-bottom: 50px;
+}
 
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+.welcome-icon {
+    width: 82px;
+    height: 82px;
+    margin: auto;
+    border-radius: 50%;
 
-            box-shadow:
-                0 0 35px rgba(139, 92, 246, 0.55);
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        .header {
-            text-align: center;
-        }
+    font-size: 42px;
 
-        .header h1 {
-            font-size: 42px;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
+    background: #5865f2;
+    box-shadow: 0 0 35px rgba(88,101,242,.35);
+}
 
-        .purple {
-            color: #c084fc;
-        }
+.welcome h1 {
+    margin-top: 25px;
+    font-size: 32px;
+}
 
-        .header p {
-            color: #c4b5d9;
-            font-size: 17px;
-            line-height: 1.7;
-            max-width: 650px;
-            margin: auto;
-        }
+.welcome h1 span {
+    color: #b47cff;
+}
 
-        .line {
-            width: 100%;
-            height: 1px;
-            margin: 40px 0;
+.welcome p {
+    color: #b5bac1;
+    margin-top: 12px;
+    line-height: 1.6;
+}
 
-            background: linear-gradient(
-                90deg,
-                transparent,
-                #8b5cf6,
-                transparent
-            );
-        }
+/* Caixa principal */
+.panel {
+    background: #2b2d31;
+    border-radius: 10px;
+    padding: 28px;
+    border: 1px solid #3f4147;
+}
 
-        .title {
-            text-align: center;
-            font-size: 25px;
-            margin-bottom: 25px;
-        }
+.panel-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+.panel-description {
+    color: #b5bac1;
+    margin-bottom: 25px;
+}
 
-        .card {
-            text-decoration: none;
-            color: white;
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
 
-            padding: 27px;
+.card {
+    text-decoration: none;
+    color: #ffffff;
 
-            border-radius: 18px;
+    background: #313338;
+    border: 1px solid #3f4147;
+    border-radius: 8px;
 
-            background: linear-gradient(
-                145deg,
-                rgba(51, 32, 86, 0.85),
-                rgba(31, 20, 55, 0.85)
-            );
+    padding: 20px;
 
-            border: 1px solid rgba(167, 139, 250, 0.18);
+    transition: .2s;
+}
 
-            transition: all 0.25s ease;
-        }
+.card:hover {
+    background: #3a3048;
+    border-color: #8b5cf6;
+    transform: translateY(-2px);
+}
 
-        .card:hover {
-            transform: translateY(-6px);
+.card-icon {
+    font-size: 26px;
+    margin-bottom: 12px;
+}
 
-            border-color: #a855f7;
+.card h2 {
+    font-size: 16px;
+    margin-bottom: 7px;
+}
 
-            background: linear-gradient(
-                145deg,
-                rgba(76, 29, 149, 0.9),
-                rgba(45, 27, 82, 0.9)
-            );
+.card p {
+    color: #b5bac1;
+    font-size: 13px;
+    line-height: 1.5;
+}
 
-            box-shadow:
-                0 15px 40px rgba(124, 58, 237, 0.28);
-        }
+/* Rodapé */
+.footer {
+    text-align: center;
+    color: #72767d;
+    font-size: 12px;
+    margin-top: 35px;
+}
 
-        .icon {
-            font-size: 34px;
-            margin-bottom: 15px;
-        }
+/* Celular */
+@media (max-width: 700px) {
 
-        .card h2 {
-            font-size: 19px;
-            margin-bottom: 9px;
-        }
+    .sidebar {
+        display: none;
+    }
 
-        .card p {
-            color: #b8a9cc;
-            font-size: 14px;
-            line-height: 1.6;
-        }
+    .main {
+        margin-left: 0;
+    }
 
-        .events {
-            margin-top: 20px;
-            text-align: center;
+    .content {
+        padding: 40px 18px;
+    }
 
-            padding: 22px;
-
-            border-radius: 16px;
-
-            background: rgba(124, 58, 237, 0.12);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-
-            color: #d8b4fe;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-
-            color: #817392;
-            font-size: 13px;
-        }
-
-        @media (max-width: 650px) {
-            .container {
-                padding: 35px 20px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 32px;
-            }
-        }
-    </style>
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="background">
+<!-- LATERAL -->
+<aside class="sidebar">
 
-    <main class="container">
+    <div class="server-name">
+        🦎 [BOT] Gekko
+    </div>
 
-        <div class="header">
+    <div class="category">
+        Informações
+    </div>
 
-            <div class="logo">
+    <div class="channel active">
+        📢・início
+    </div>
+
+    <div class="channel">
+        📜・termos
+    </div>
+
+    <div class="channel">
+        🔒・privacidade
+    </div>
+
+    <div class="category">
+        Comunidade
+    </div>
+
+    <div class="channel">
+        🎉・eventos
+    </div>
+
+    <div class="channel">
+        🎮・valorant
+    </div>
+
+</aside>
+
+<!-- PRINCIPAL -->
+<main class="main">
+
+    <header class="header">
+        <span>🦎</span>
+        <strong>[BOT] Gekko</strong>
+    </header>
+
+    <section class="content">
+
+        <div class="welcome">
+
+            <div class="welcome-icon">
                 🦎
             </div>
 
             <h1>
-                <span class="purple">[BOT]</span> Gekko
+                Bem-vindo ao <span>[BOT] Gekko!</span>
             </h1>
 
             <p>
-                🤖 Bot de suporte e eventos para a comunidade de
-                <strong>VALORANT</strong>.
+                🤖 Bot de suporte e eventos para a comunidade de VALORANT.
                 <br>
-                🎮 Organize partidas, eventos e mantenha sua comunidade conectada.
+                🎮 Organize partidas, eventos e mantenha a comunidade conectada.
             </p>
 
         </div>
 
-        <div class="line"></div>
+        <div class="panel">
 
-        <h2 class="title">✨ Informações do Bot</h2>
+            <div class="panel-title">
+                📌 Informações
+            </div>
 
-        <section class="cards">
+            <div class="panel-description">
+                Confira as informações oficiais do [BOT] Gekko.
+            </div>
 
-            <a href="terms.html" class="card">
-                <div class="icon">📜</div>
+            <div class="cards">
 
-                <h2>Termos de Serviço</h2>
+                <a href="terms.html" class="card">
 
-                <p>
-                    Confira as condições e regras para utilização
-                    do [BOT] Gekko.
-                </p>
-            </a>
+                    <div class="card-icon">
+                        📜
+                    </div>
 
-            <a href="privacy.html" class="card">
-                <div class="icon">🔒</div>
+                    <h2>
+                        Termos de Serviço
+                    </h2>
 
-                <h2>Política de Privacidade</h2>
+                    <p>
+                        Consulte os termos e condições de utilização do bot.
+                    </p>
 
-                <p>
-                    Veja como as informações utilizadas pelo bot
-                    são tratadas.
-                </p>
-            </a>
+                </a>
 
-            <a href="#" class="card">
-                <div class="icon">🎮</div>
+                <a href="privacy.html" class="card">
 
-                <h2>Comunidade</h2>
+                    <div class="card-icon">
+                        🔒
+                    </div>
 
-                <p>
-                    Participe da comunidade e fique por dentro
-                    das novidades.
-                </p>
-            </a>
+                    <h2>
+                        Política de Privacidade
+                    </h2>
 
-            <a href="#" class="card">
-                <div class="icon">🎉</div>
+                    <p>
+                        Veja como as informações utilizadas pelo bot são tratadas.
+                    </p>
 
-                <h2>Eventos</h2>
+                </a>
 
-                <p>
-                    Crie e participe de eventos, partidas e
-                    atividades da comunidade.
-                </p>
-            </a>
+                <a href="#" class="card">
 
-        </section>
+                    <div class="card-icon">
+                        🎉
+                    </div>
 
-        <div class="events">
-            💜 <strong>[BOT] Gekko</strong> • Comunidade VALORANT
+                    <h2>
+                        Eventos
+                    </h2>
+
+                    <p>
+                        Confira e participe dos eventos da comunidade.
+                    </p>
+
+                </a>
+
+                <a href="#" class="card">
+
+                    <div class="card-icon">
+                        🎮
+                    </div>
+
+                    <h2>
+                        VALORANT
+                    </h2>
+
+                    <p>
+                        Conteúdos e atividades para a comunidade de VALORANT.
+                    </p>
+
+                </a>
+
+            </div>
+
         </div>
 
-        <footer>
-            © 2026 [BOT] Gekko • Todos os direitos reservados.
-        </footer>
+        <div class="footer">
+            🦎 [BOT] Gekko • Comunidade VALORANT • 2026
+        </div>
 
-    </main>
+    </section>
 
-</div>
+</main>
 
 </body>
 </html>
