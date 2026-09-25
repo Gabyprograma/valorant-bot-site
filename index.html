@@ -8,119 +8,197 @@
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
-            color: #ffffff;
+            min-height: 100vh;
+            color: white;
+
             background:
-                radial-gradient(circle at top right, #5b21b6 0%, transparent 35%),
-                radial-gradient(circle at bottom left, #312e81 0%, transparent 40%),
-                #0f0f18;
+                radial-gradient(circle at 15% 20%, #7c3aed 0%, transparent 28%),
+                radial-gradient(circle at 85% 80%, #4c1d95 0%, transparent 30%),
+                linear-gradient(135deg, #12051f, #211044 45%, #130827);
+        }
+
+        .background {
+            min-height: 100vh;
+            padding: 70px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px;
         }
 
         .container {
             width: 100%;
-            max-width: 850px;
-            background: rgba(24, 24, 38, 0.88);
-            border: 1px solid rgba(139, 92, 246, 0.35);
-            border-radius: 24px;
-            padding: 45px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(12px);
+            max-width: 900px;
+
+            background: rgba(20, 13, 38, 0.82);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 28px;
+
+            padding: 55px;
+
+            box-shadow:
+                0 0 80px rgba(124, 58, 237, 0.25),
+                inset 0 0 40px rgba(168, 85, 247, 0.04);
+
+            backdrop-filter: blur(18px);
         }
 
-        .top {
+        .logo {
+            width: 90px;
+            height: 90px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 48px;
+
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+
+            box-shadow:
+                0 0 35px rgba(139, 92, 246, 0.55);
+        }
+
+        .header {
             text-align: center;
-            margin-bottom: 35px;
         }
 
-        .emoji {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: 38px;
+        .header h1 {
+            font-size: 42px;
             margin-bottom: 12px;
+            font-weight: 800;
         }
 
-        .highlight {
-            color: #a78bfa;
+        .purple {
+            color: #c084fc;
         }
 
-        .description {
-            color: #b8b8c7;
+        .header p {
+            color: #c4b5d9;
             font-size: 17px;
-            line-height: 1.6;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            margin: 40px 0;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #8b5cf6,
+                transparent
+            );
+        }
+
+        .title {
+            text-align: center;
+            font-size: 25px;
+            margin-bottom: 25px;
         }
 
         .cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-            margin-top: 30px;
+            gap: 20px;
         }
 
         .card {
             text-decoration: none;
             color: white;
-            background: rgba(38, 38, 58, 0.8);
-            border: 1px solid rgba(139, 92, 246, 0.25);
-            border-radius: 16px;
-            padding: 25px;
-            transition: 0.25s;
+
+            padding: 27px;
+
+            border-radius: 18px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(51, 32, 86, 0.85),
+                rgba(31, 20, 55, 0.85)
+            );
+
+            border: 1px solid rgba(167, 139, 250, 0.18);
+
+            transition: all 0.25s ease;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            border-color: #8b5cf6;
-            background: rgba(55, 45, 85, 0.9);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
+            transform: translateY(-6px);
+
+            border-color: #a855f7;
+
+            background: linear-gradient(
+                145deg,
+                rgba(76, 29, 149, 0.9),
+                rgba(45, 27, 82, 0.9)
+            );
+
+            box-shadow:
+                0 15px 40px rgba(124, 58, 237, 0.28);
         }
 
-        .card .icon {
-            font-size: 30px;
-            margin-bottom: 12px;
+        .icon {
+            font-size: 34px;
+            margin-bottom: 15px;
         }
 
         .card h2 {
             font-size: 19px;
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
 
         .card p {
-            color: #aaaabb;
+            color: #b8a9cc;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        .events {
+            margin-top: 20px;
+            text-align: center;
+
+            padding: 22px;
+
+            border-radius: 16px;
+
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+
+            color: #d8b4fe;
         }
 
         footer {
             text-align: center;
-            color: #77778a;
+            margin-top: 40px;
+
+            color: #817392;
             font-size: 13px;
-            margin-top: 35px;
         }
 
         @media (max-width: 650px) {
             .container {
-                padding: 30px 20px;
+                padding: 35px 20px;
             }
 
             .cards {
                 grid-template-columns: 1fr;
             }
 
-            h1 {
-                font-size: 30px;
+            .header h1 {
+                font-size: 32px;
             }
         }
     </style>
@@ -128,63 +206,92 @@
 
 <body>
 
+<div class="background">
+
     <main class="container">
 
-        <section class="top">
-            <div class="emoji">🦎</div>
+        <div class="header">
+
+            <div class="logo">
+                🦎
+            </div>
 
             <h1>
-                <span class="highlight">[BOT]</span> Gekko
+                <span class="purple">[BOT]</span> Gekko
             </h1>
 
-            <p class="description">
-                🤖 Bot de suporte e eventos para a comunidade de VALORANT.
+            <p>
+                🤖 Bot de suporte e eventos para a comunidade de
+                <strong>VALORANT</strong>.
                 <br>
-                🎮 Organize, participe e mantenha sua comunidade conectada!
+                🎮 Organize partidas, eventos e mantenha sua comunidade conectada.
             </p>
-        </section>
+
+        </div>
+
+        <div class="line"></div>
+
+        <h2 class="title">✨ Informações do Bot</h2>
 
         <section class="cards">
 
-            <a class="card" href="terms.html">
+            <a href="terms.html" class="card">
                 <div class="icon">📜</div>
+
                 <h2>Termos de Serviço</h2>
+
                 <p>
-                    Consulte as regras e condições de utilização do [BOT] Gekko.
+                    Confira as condições e regras para utilização
+                    do [BOT] Gekko.
                 </p>
             </a>
 
-            <a class="card" href="privacy.html">
+            <a href="privacy.html" class="card">
                 <div class="icon">🔒</div>
+
                 <h2>Política de Privacidade</h2>
+
                 <p>
-                    Saiba como as informações são utilizadas pelo bot.
+                    Veja como as informações utilizadas pelo bot
+                    são tratadas.
                 </p>
             </a>
 
-            <a class="card" href="https://discord.com/">
+            <a href="#" class="card">
                 <div class="icon">🎮</div>
+
                 <h2>Comunidade</h2>
+
                 <p>
-                    Entre no Discord e participe da comunidade.
+                    Participe da comunidade e fique por dentro
+                    das novidades.
                 </p>
             </a>
 
-            <div class="card">
+            <a href="#" class="card">
                 <div class="icon">🎉</div>
+
                 <h2>Eventos</h2>
+
                 <p>
-                    Organize e participe de eventos da comunidade VALORANT.
+                    Crie e participe de eventos, partidas e
+                    atividades da comunidade.
                 </p>
-            </div>
+            </a>
 
         </section>
 
+        <div class="events">
+            💜 <strong>[BOT] Gekko</strong> • Comunidade VALORANT
+        </div>
+
         <footer>
-            © 2026 [BOT] Gekko • VALORANT Community
+            © 2026 [BOT] Gekko • Todos os direitos reservados.
         </footer>
 
     </main>
+
+</div>
 
 </body>
 </html>
